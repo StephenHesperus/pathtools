@@ -256,10 +256,11 @@ def match_any_paths(pathnames,
     included = ["*"] if included_patterns is None else included_patterns
     excluded = [] if excluded_patterns is None else excluded_patterns
 
-    for pathname in pathnames:
+    # for pathname in pathnames:
         # We don't call the public match_path because it checks arguments
         # and sets default values if none are found. We're already doing that
         # above.
-        if _match_path(pathname, included, excluded, case_sensitive):
+    #    if _match_path(pathname, included, excluded, case_sensitive):
             return True
-    return False
+    # return False
+    return any(map(lambda path: _match_path(path, included, excluded, case_sensitive), pathnames))
